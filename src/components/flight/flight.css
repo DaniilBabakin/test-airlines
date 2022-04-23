@@ -1,0 +1,117 @@
+.flight{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width:700px;
+  margin-bottom: 50px;
+  padding:20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+.flight_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:white;
+  background-color: #46acd4;
+  border-radius: 5px;
+  height: 60px;
+  width: 100%;
+}
+.flight_header_price{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.flight_position{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top:10px;
+  padding-bottom:10px;
+}
+.flight_position_title{
+  width:100%;
+  font-size: 22px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+.flight_position_time{
+  width:95%;
+  display:flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding:10px 0 0 0;
+}
+.flight_position_stop{
+  color:orange;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-weight: 500;
+  width: 95%;
+  padding-bottom: 10px;
+}
+.flight_position_stop:before, .flight_position_stop:after{
+  content: "";
+  color:gray;
+  flex: 1 1;
+  border-bottom: 1px solid;
+  margin: auto;
+  margin-top:11px;
+}
+.flight_position_stop.withoutContent:after{
+  display: none;
+}
+.flight_position_stop:before {
+  margin-right: 10px
+}
+.flight_position_stop:after {
+  margin-left: 10px
+}
+
+
+
+
+/* CSS */
+.button-5 {
+  align-items: center;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    transition: all 250ms;
+  width: 100%;
+}
+
+.button-5:hover,
+.button-5:focus {
+  background-color: #fb8332;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.button-5:hover {
+  transform: translateY(-1px);
+}
+
+.button-5:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}

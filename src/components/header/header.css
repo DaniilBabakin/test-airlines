@@ -1,0 +1,27 @@
+.header {
+  width:100%;
+  height: 60px;
+  background-color:#2b3643;
+  color:white;
+  margin-bottom: 30px;
+}
+.header_container {
+  margin:0 auto;
+  max-width: 90%;
+  height: 100%;
+  padding:0 1rem;
+
+}
+.navbar {
+  display:flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+} 
+.navbar_title{
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
