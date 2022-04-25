@@ -26,10 +26,11 @@ export default function FilterMenu({companyNames,flightsInfo,setFlightsInfo,back
       setFlightsInfo(backup)
     }
     if(value==="1 пересадка"){
-      setFlightsInfo(backup.filter((item)=> filterByNames.some((value)=>item.flight.carrier.caption.includes(value))).filter((flight)=> flight.flight.legs[0].segments.length >=2 || flight.flight.legs[1].segments.length >=2))
+      filterByNames.length > 0 ? setFlightsInfo(backup.filter((item)=> filterByNames.some((value)=>item.flight.carrier.caption.includes(value))).filter((flight)=> flight.flight.legs[0].segments.length >=2 || flight.flight.legs[1].segments.length >=2)) : setFlightsInfo(backup.filter((flight)=> flight.flight.legs[0].segments.length >=2 || flight.flight.legs[1].segments.length >=2))
     }
     if(value==="Без пересадок"){
-      setFlightsInfo(backup.filter((item)=> filterByNames.some((value)=>item.flight.carrier.caption.includes(value))).filter((flight)=> flight.flight.legs[0].segments.length < 2 && flight.flight.legs[1].segments.length < 2))
+      filterByNames.length > 0 ? setFlightsInfo(backup.filter((item)=> filterByNames.some((value)=>item.flight.carrier.caption.includes(value))).filter((flight)=> flight.flight.legs[0].segments.length < 2 && flight.flight.legs[1].segments.length < 2)) : setFlightsInfo(backup.filter((flight)=> flight.flight.legs[0].segments.length < 2 && flight.flight.legs[1].segments.length < 2))
+      
     }
   }
   
