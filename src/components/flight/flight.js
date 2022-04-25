@@ -14,7 +14,7 @@ export default function Flight({flight}){
     <div className="flight">
     {/*---------------------------УДОБНЕЕ БУДЕТ ОРИЕНТИРОВАТЬСЯ ПО КОММЕНТАРИЯМ---------------------------*/}
       <div className="flight_header">
-        <span style={{paddingLeft:"20px",fontSize:"20px",letterSpacing:"2px"}}>{flight.carrier.caption}</span>
+        <span className="flight_header_caption">{flight.carrier.caption}</span>
         <div className='flight_header_price' style={{paddingRight:"20px"}}>
           <span style={{fontSize:"20px"}}>{flight.price.total.amount} ₽</span>
           <span>Стоимость для одного взрослого пассажира</span>
@@ -30,7 +30,7 @@ export default function Flight({flight}){
           <p className='flight_position_title'>
             {departure0.departureCity.caption}, {departure0.departureAirport.caption}({departure0.departureAirport.uid}) -> 
 
-            ({arrival0[0].arrivalAirport.uid}){arrival0Lenght == 2 ? arrival0[1].arrivalCity.caption : arrival0[0].arrivalCity.caption}, {arrival0Lenght == 2 ? arrival0[1].arrivalAirport.caption : arrival0[0].arrivalAirport.caption}</p>
+            ({arrival0[0].arrivalAirport.uid}) {(arrival0Lenght === 2 && arrival0[1].arrivalCity !== undefined) ? arrival0[1].arrivalCity.caption : arrival0[0].arrivalCity.caption}, {arrival0Lenght === 2 ? arrival0[1].arrivalAirport.caption : arrival0[0].arrivalAirport.caption}</p>
           <div className='flight_position_time'> 
         {/*------------------------Дата и время вылета------------------------*/}
           <p>{departure0.departureDate.slice(11,16)} <span style={{color:"blue",fontSize:"17px"}}>{parseInt(departure0.departureDate.slice(8,10))}{numberToMonth[parseInt(departure0.departureDate.slice(5,7)) - 1]}</span></p>
@@ -41,10 +41,10 @@ export default function Flight({flight}){
           </svg>
           {Math.floor(flight.legs[0].duration/60)}ч {flight.legs[0].duration%60}минут</p>
         {/*------------------------Дата и время прилета------------------------*/}
-          <p>{arrival0Lenght == 2 ? arrival0[1].arrivalDate.slice(11,16) : arrival0[0].arrivalDate.slice(11,16)} <span style={{color:"blue",fontSize:"17px"}}>{parseInt(arrival0.slice(-1)[0].arrivalDate.slice(8,10))}{numberToMonth[parseInt(arrival0.slice(-1)[0].arrivalDate.slice(5,7)) - 1]}</span></p>
+          <p>{arrival0Lenght === 2 ? arrival0[1].arrivalDate.slice(11,16) : arrival0[0].arrivalDate.slice(11,16)} <span style={{color:"blue",fontSize:"17px"}}>{parseInt(arrival0.slice(-1)[0].arrivalDate.slice(8,10))}{numberToMonth[parseInt(arrival0.slice(-1)[0].arrivalDate.slice(5,7)) - 1]}</span></p>
         </div>
         {/*------------------------Количество пересадок------------------------*/}
-        <span className={`flight_position_stop ${arrival0Lenght < 2 && "withoutContent"}`}>{arrival0Lenght == 2 ? `${arrival0Lenght - 1} пересадка` : (arrival0Lenght >= 3 ? `${arrival0Lenght - 1} пересадки` : "")} </span>
+        <span className={`flight_position_stop ${arrival0Lenght < 2 && "withoutContent"}`}>{arrival0Lenght === 2 ? `${arrival0Lenght - 1} пересадка` : (arrival0Lenght >= 3 ? `${arrival0Lenght - 1} пересадки` : "")} </span>
 
         <span>Рейс выполняет: {flight.carrier.caption}</span>
       </div>
@@ -54,7 +54,7 @@ export default function Flight({flight}){
       {/*--------------------------------------ПЕРЕЛЕТ В ДРУГУЮ СТОРОНУ--------------------------------------*/}
       <div className='flight_position'>
         {/*------------------------Город и аэропорт прилета/вылета------------------------*/}
-          <p className='flight_position_title'>{departure1.departureCity.caption}, {departure1.departureAirport.caption}({departure1.departureAirport.uid}) -> ({arrival1[0].arrivalAirport.uid}){arrival1Lenght == 2 ? arrival1[1].arrivalCity.caption : arrival1[0].arrivalCity.caption}, {arrival1Lenght == 2 ? arrival1[1].arrivalAirport.caption : arrival1[0].arrivalAirport.caption}</p>
+          <p className='flight_position_title'>{(departure1.departureCity !== undefined) && departure1.departureCity.caption}, {departure1.departureAirport.caption}({departure1.departureAirport.uid}) -> ({arrival1[0].arrivalAirport.uid}) {arrival1Lenght === 2 ? arrival1[1].arrivalCity.caption : arrival1[0].arrivalCity.caption}, {arrival1Lenght === 2 ? arrival1[1].arrivalAirport.caption : arrival1[0].arrivalAirport.caption}</p>
           <div className='flight_position_time'> 
         {/*------------------------Дата и время вылета------------------------*/}
             <p>{departure1.departureDate.slice(11,16)} <span style={{color:"blue",fontSize:"17px"}}>{parseInt(departure1.departureDate.slice(8,10))}{numberToMonth[parseInt(departure1.departureDate.slice(5,7)) - 1]}</span></p>
@@ -66,10 +66,10 @@ export default function Flight({flight}){
               {Math.floor(flight.legs[1].duration/60)}ч {flight.legs[1].duration%60}минут
             </p>
         {/*------------------------Дата и время прилета------------------------*/}
-            <p>{arrival1Lenght == 2 ? arrival1[1].arrivalDate.slice(11,16) : arrival1[0].arrivalDate.slice(11,16)} <span style={{color:"blue",fontSize:"17px"}}>{parseInt(arrival1.slice(-1)[0].arrivalDate.slice(8,10))}{numberToMonth[parseInt(arrival1.slice(-1)[0].arrivalDate.slice(5,7)) - 1]}</span></p>
+            <p>{arrival1Lenght === 2 ? arrival1[1].arrivalDate.slice(11,16) : arrival1[0].arrivalDate.slice(11,16)} <span style={{color:"blue",fontSize:"17px"}}>{parseInt(arrival1.slice(-1)[0].arrivalDate.slice(8,10))}{numberToMonth[parseInt(arrival1.slice(-1)[0].arrivalDate.slice(5,7)) - 1]}</span></p>
           </div>
         {/*------------------------Количество пересадок------------------------*/}
-          <span className={`flight_position_stop ${arrival1Lenght < 2 && "withoutContent"}`}>{arrival1Lenght == 2 ? `${arrival1Lenght - 1} пересадка` : (arrival1Lenght >= 3 ? `${arrival1Lenght - 1} пересадки` : "")}</span>
+          <span className={`flight_position_stop ${arrival1Lenght < 2 && "withoutContent"}`}>{arrival1Lenght === 2 ? `${arrival1Lenght - 1} пересадка` : (arrival1Lenght >= 3 ? `${arrival1Lenght - 1} пересадки` : "")}</span>
 
           <span>Рейс выполняет: {flight.carrier.caption}</span>
       </div>
